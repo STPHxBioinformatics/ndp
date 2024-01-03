@@ -111,9 +111,6 @@ nextflow run ndp2bc_degenerate.nf
 ## Support
 In case of issues with the pipeline please contact pierre.schneeberger@swisstph.ch or julian.dommann@swisstph.ch.
 
-## Authors and acknowledgment
-Huge thanks go out to Jakob Kerbl-Knapp and Matthias Wurm, who greatly supported the development of the python demultiplexing script "demultiplexing.py".
-
 ## Citations
 If this pipeline is used for your research purposes, please cite DOI-XXX.
 
