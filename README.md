@@ -16,13 +16,6 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Separated fastq files for each barcode.
 * /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
 
-## Project status
-We do not plan to adapt this pipeline any futher. It could however be modified to fit other applications, as:
-
-* ...the primer sequences in the files PATH/TO/ndp/0_scripts may be changed to other primer sequences.
-* ...the  pipeline may be adapted to other target organisms by using other Emu databases or creating custom Emu databases. For more info, please visit the [Emu GitLab](https://gitlab.com/treangenlab/emu) page.
-
-
 ## Setup
 
 1) Install [nextflow(v.23.04.1)](https://github.com/nextflow-io/nextflow) and [singularity(v.3.8.5)](https://github.com/sylabs/singularity).
@@ -47,7 +40,49 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 ```
 
 ## Primer sequences
-...
+
+Primer sequences: 
+
+| Primer    | Primer Sequence                                |
+| --------- | ---------------------------------------------- |
+| P01-FWD   | **GAGCCCGTTCCG**AGAGTTTGATCMTGGCTCAG          |
+| P02-FWD   | **TGGCACCGATTA**AGAGTTTGATCMTGGCTCAG          |
+| P03-FWD   | **GACATACAATGA**AGAGTTTGATCMTGGCTCAG          |
+| P04-FWD   | **ATGGTCTACTAC**AGAGTTTGATCMTGGCTCAG          |
+| P05-FWD   | **CCACTTGGATAG**AGAGTTTGATCMTGGCTCAG          |
+| P06-FWD   | **CGATTATGGCAC**AGAGTTTGATCMTGGCTCAG          |
+| P07-FWD   | **CTTACGAGGCAT**AGAGTTTGATCMTGGCTCAG          |
+| P08-FWD   | **GTCCACCCTGGG**AGAGTTTGATCMTGGCTCAG          |
+| P01-REV   | **GAGCCCGTTCCG**CGGTTACCTTGTTACGACTT          |
+| P02-REV   | **TGGCACCGATTA**CGGTTACCTTGTTACGACTT          |
+| P03-REV   | **GACATACAATGA**CGGTTACCTTGTTACGACTT          |
+| P04-REV   | **ATGGTCTACTAC**CGGTTACCTTGTTACGACTT          |
+| P05-REV   | **CCACTTGGATAG**CGGTTACCTTGTTACGACTT          |
+| P06-REV   | **CGATTATGGCAC**CGGTTACCTTGTTACGACTT          |
+| P07-REV   | **CTTACGAGGCAT**CGGTTACCTTGTTACGACTT          |
+| P08-REV   | **GTCCACCCTGGG**CGGTTACCTTGTTACGACTT          |
+
+Degenerate primer sequences: 
+
+| Primer    | Primer Sequence                                |
+| --------- | ---------------------------------------------- |
+| P01-FWD   | **GAGCCCGTTCCG**AGRGTTYGATYMTGGCTCAG          |
+| P02-FWD   | **TGGCACCGATTA**AGRGTTYGATYMTGGCTCAG          |
+| P03-FWD   | **GACATACAATGA**AGRGTTYGATYMTGGCTCAG          |
+| P04-FWD   | **ATGGTCTACTAC**AGRGTTYGATYMTGGCTCAG          |
+| P05-FWD   | **CCACTTGGATAG**AGRGTTYGATYMTGGCTCAG          |
+| P06-FWD   | **CGATTATGGCAC**AGRGTTYGATYMTGGCTCAG          |
+| P07-FWD   | **CTTACGAGGCAT**AGRGTTYGATYMTGGCTCAG          |
+| P08-FWD   | **GTCCACCCTGGG**AGRGTTYGATYMTGGCTCAG          |
+| P01-REV   | **GAGCCCGTTCCG**CGGYTACCTTGTTACGACTT          |
+| P02-REV   | **TGGCACCGATTAC**GGYTACCTTGTTACGACTT          |
+| P03-REV   | **GACATACAATGA**CGGYTACCTTGTTACGACTT          |
+| P04-REV   | **ATGGTCTACTAC**CGGYTACCTTGTTACGACTT          |
+| P05-REV   | **CCACTTGGATAG**CGGYTACCTTGTTACGACTT          |
+| P06-REV   | **CGATTATGGCAC**CGGYTACCTTGTTACGACTT          |
+| P07-REV   | **CTTACGAGGCAT**CGGYTACCTTGTTACGACTT          |
+| P08-REV   | **GTCCACCCTGGG**CGGYTACCTTGTTACGACTT          |
+
 
 ## Pipeline Flexibiliy
 ...
@@ -109,13 +144,16 @@ nextflow run ndp2bc_degenerate.nf
 ```
 
 ## Support
-In case of issues with the pipeline please contact pierre.schneeberger@swisstph.ch or julian.dommann@swisstph.ch.
+We do not plan to adapt this pipeline any futher. It could however be modified to fit other applications, as:
+
+* ...the primer sequences in the files PATH/TO/ndp/0_scripts may be changed to other primer sequences.
+* ...the  pipeline may be adapted to other target organisms by using other Emu databases or creating custom Emu databases. For more info, please visit the [Emu GitLab](https://gitlab.com/treangenlab/emu) page.
 
 ## Citations
 If this pipeline is used for your research purposes, please cite DOI-XXX.
 
 ## Credits
-This pipline relies on a few great pieces of software, namely:
+This pipeline relies on a few great pieces of software, namely:
 
 * [Nextflow](https://github.com/nextflow-io/nextflow)
 * [Singularity CE](https://github.com/sylabs/singularity)
@@ -136,6 +174,6 @@ You can reach us at:
 * <mailto:julian.dommann@swisstph.ch>
 
 ## ToDo
-* add primers
-* add flexibility
+* add primers / flexibility
 * generate directory tree of final setup
+* Explain the rustic nature of pipeline; open for contributors
