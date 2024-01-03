@@ -60,16 +60,16 @@ Basecalled input files must be in fastq format!
 
 ### Running ndp to detect 1 PCR barcode
 
-1) Create a new INPUT and OUTPUT directory for each run (parent directory: /PATH/TO/ndp).
+1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
 ```
 cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT directory and OUTPUT directory.
+2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
 
-3) Transfer the fastq files to the INPUT directory
+3) Transfer the fastq files to the INPUT_FOLDER directory
 
 4) Execute the pipeline using:
 
@@ -85,21 +85,21 @@ nextflow run ndp_degenerate.nf
 
 ### Running ndp to detect 2 PCR barcodes
 
-1) Create a new INPUT and OUTPUT directory for each run (parent directory: /PATH/TO/ndp).
+1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
 ```
 cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT directory and OUTPUT directory.
+2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
 
-3) Transfer your fastq files to the INPUT directory
+3) Transfer your fastq files to the INPUT_FOLDER directory
 
 4) Execute the pipeline using:
 
 ```
-nextflow run ndp_degenerate.nf
+nextflow run ndp2bc.nf
 ```
 
 To allow ndp to detect a degenerate primer pair (microbiome characterization), run the following command instead:
@@ -139,6 +139,6 @@ You can reach us at:
 * <mailto:julian.dommann@swisstph.ch>
 
 ## ToDo
-* add degen usage
-* add 2bc usage
+* add primers
+* add flexibility
 * generate directory tree of final setup
