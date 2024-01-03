@@ -1,15 +1,7 @@
 # ndp
-A nextflow demultiplexing pipeline for PCR-barcoded 16S nanopore reads.
-
-## Project status
-We do not plan to adapt this pipeline any futher. It could however be modified, as:
-
-* ...the barcode sequences in the files barcodes.txt and barcodes2.txt can be changed to other barcode sequences to fit other applications.
-* ...the whole pipeline could be adapted to other target organisms by using other Emu databases or creating custom Emu databases. For more info, please visit the [Emu GitLab](https://gitlab.com/treangenlab/emu) page.
-
-## Description
-
-This nextflow pipeline will demultiplex 16S amplicon reads based on two custom barcode sequences and identify the reads using a 16S database. Consider the corresponding publication (DOI) for further details. Here's an overview of the individual processes taking place within the pipline:
+This nextflow pipeline will demultiplex 16S amplicon reads based on two custom barcode sequences and identify the reads using a 16S database. 
+Consider the corresponding publication (DOI-XXX) for further details. 
+Here's an overview of the individual processes taking place in the pipline:
 
 * Read filtering via [Nanofilt](https://github.com/wdecoster/nanofilt)
 * QC via [FastQC](https://github.com/s-andrews/FastQC) and [MultiQC](https://multiqc.info/)
@@ -23,6 +15,13 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/04_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
 * /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Separated fastq files for each barcode.
 * /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
+
+## Project status
+We do not plan to adapt this pipeline any futher. It could however be modified to fit other applications, as:
+
+* ...the primer sequences in the files PATH/TO/ndp/0_scripts may be changed to other primer sequences.
+* ...the  pipeline may be adapted to other target organisms by using other Emu databases or creating custom Emu databases. For more info, please visit the [Emu GitLab](https://gitlab.com/treangenlab/emu) page.
+
 
 ## Setup
 
@@ -47,11 +46,19 @@ singularity pull --name biopython1.78.sif https://depot.galaxyproject.org/singul
 singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity/emu:3.4.5--hdfd78af_0
 ```
 
+## Primer sequences
+...
+
+## Pipeline Flexibiliy
+...
+
 ## Usage
 
 It is recommended to use this pipeline on a cluster! 
 We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
 Basecalled input files must be in fastq format!
+
+### Running ndp to detect 1 PCR barcode
 
 1) Create a new INPUT and OUTPUT directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -60,12 +67,45 @@ cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-3) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT directory and OUTPUT directory.
+2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT directory and OUTPUT directory.
 
-4) Drop the fastq files into the input directory and execute the pipeline using:
+3) Transfer the fastq files to the INPUT directory
+
+4) Execute the pipeline using:
 
 ```
 nextflow run ndp.nf
+```
+
+To allow ndp to detect a degenerate primer (microbiome characterization), run the following command instead:
+
+```
+nextflow run ndp_degenerate.nf
+```
+
+### Running ndp to detect 2 PCR barcodes
+
+1) Create a new INPUT and OUTPUT directory for each run (parent directory: /PATH/TO/ndp).
+
+```
+cd PATH/TO/ndp
+mkdir INPUT_FOLDER
+mkdir OUTPUT_FOLDER
+```
+2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT directory and OUTPUT directory.
+
+3) Transfer your fastq files to the INPUT directory
+
+4) Execute the pipeline using:
+
+```
+nextflow run ndp_degenerate.nf
+```
+
+To allow ndp to detect a degenerate primer pair (microbiome characterization), run the following command instead:
+
+```
+nextflow run ndp2bc_degenerate.nf
 ```
 
 ## Support
