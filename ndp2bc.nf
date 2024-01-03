@@ -8,14 +8,14 @@
 // 3) Make sure your input reads are in .fastq format
 // 4) Choose a short name for your reads that includes the outer ONT barcode used (for example: 'duplex_25.fastq' or 'singlex_25.fastq').
 // 5) Generate an input and output directory for each run under PATH/TO/ndp/
-// 6) Adjust your WD, INPUT and OUTPUT directory in this script BEFORE the run (input: params.reads, output: params.outdir)
+// 6) Adjust your working directory WD, INPUT_FOLDER and OUTPUT_FOLDER directory in this script BEFORE the run (input: params.reads, output: params.outdir)
 // 7) Adjust the paths for your stdout and stderr files in your SLURM script!
 // 8) Enjoy! :)
 
 nextflow.enable.dsl=2
-wd = "/PATH/TO/ndp/"                               //adjust your WD here! The 'wd' must be the parent of 'INPUT' / 'OUTPUT'!
-params.reads = "/PATH/TO/ndp/INPUT/*.fastq"        //adjust your INPUT directory here!
-params.outdir = "/PATH/TO/ndp/OUTPUT/"             //adjust your OUTPUT directory here!
+wd = "/PATH/TO/ndp/"                               //adjust your WD here! The 'wd' must be the parent of 'INPUT_FOLDER' / 'OUTPUT_FOLDER'!
+params.reads = "/PATH/TO/ndp/INPUT_FOLDER/*.fastq"        //adjust your INPUT_FOLDER directory here!
+params.outdir = "/PATH/TO/ndp/OUTPUT_FOLDER/"             //adjust your OUTPUT_FOLDER directory here!
 
 log.info """\
 	
@@ -104,7 +104,7 @@ process bed {
 	
 	script:
 	"""
-	singularity run ${wd}0_singularity_containers/seqkit2.6.1.sif seqkit amplicon -m 5 -p ${wd}/0_scripts/2bc_degen.tab -r 32:-21 ${reads} --bed > "${reads.baseName}.bed2bc"
+	singularity run ${wd}0_singularity_containers/seqkit2.6.1.sif seqkit amplicon -m 1 -p ${wd}0_scripts/2bc.tab -r 32:-21 ${reads} --bed > "${reads.baseName}.bed2bc"
 	"""
 }
 
@@ -152,7 +152,6 @@ process generate_fastq {
 process emu {	
 	
 	publishDir params.outdir, mode: 'copy', pattern: '*/*/*.tsv'
-	errorStrategy 'ignore'
 
 	input:
 	path(reads)

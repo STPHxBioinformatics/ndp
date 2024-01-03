@@ -104,7 +104,7 @@ process bed {
 	
 	script:
 	"""
-	singularity run ${wd}0_singularity_containers/seqkit2.6.1.sif seqkit amplicon -m 1 -p ${wd}0_scripts/1bc.tab -r 32:-21 ${reads} --bed > "${reads.baseName}.bed"
+	singularity run ${wd}0_singularity_containers/seqkit2.6.1.sif seqkit amplicon -m 5 -p ${wd}0_scripts/1bc_degen.tab -r 32:-21 ${reads} --bed > "${reads.baseName}.bed"
 	"""
 }
 
@@ -152,6 +152,7 @@ process generate_fastq {
 process emu {	
 	
 	publishDir params.outdir, mode: 'copy', pattern: '*/*/*.tsv'
+	errorStrategy 'ignore'
 
 	input:
 	path(reads)

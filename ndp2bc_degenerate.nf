@@ -94,17 +94,17 @@ process multiqc {
 
 process bed {
 
-	publishDir "${params.outdir}03_bed_files/", mode: 'copy', pattern: '*.bed'	
+	publishDir "${params.outdir}03_bed_files/", mode: 'copy', pattern: '*.bed2bc'	
 	
 	input:
 	path(reads)
 	
 	output:
-	file "${reads.baseName}.bed"
+	file "${reads.baseName}.bed2bc"
 	
 	script:
 	"""
-	singularity run ${wd}0_singularity_containers/seqkit2.6.1.sif seqkit amplicon -m 1 -p ${wd}0_scripts/1bc.tab -r 32:-21 ${reads} --bed > "${reads.baseName}.bed"
+	singularity run ${wd}0_singularity_containers/seqkit2.6.1.sif seqkit amplicon -m 5 -p ${wd}0_scripts/2bc_degen.tab -r 32:-21 ${reads} --bed > "${reads.baseName}.bed2bc"
 	"""
 }
 
@@ -122,7 +122,7 @@ process split_bed {
 	
 	script:
 	"""
-	singularity exec ${wd}0_singularity_containers/python3.10.4.sif python3 ${wd}0_scripts/split_bed_files.py ${reads} "${reads.baseName}_bar"
+	singularity exec ${wd}0_singularity_containers/python3.10.4.sif python3 ${wd}0_scripts/split_bed_files.py ${reads.baseName}.bed2bc "${reads.baseName}_bar"
 
 	"""
 }
@@ -142,7 +142,7 @@ process generate_fastq {
 	
 	script:
 	"""
-	singularity exec ${wd}0_singularity_containers/biopython1.78.sif python3 ${wd}0_scripts/extract_quality.py ${params.outdir}01_filtered_reads/ ${params.outdir}04_split_bed_files/"*_bar_???.bed" -o ./05_final_fastqs
+	singularity exec ${wd}0_singularity_containers/biopython1.78.sif python3 ${wd}0_scripts/extract_quality.py ${params.outdir}01_filtered_reads/ ${params.outdir}04_split_bed_files/"*_bar_*R*.bed" -o ./05_final_fastqs
 	"""
 }
 
@@ -152,6 +152,7 @@ process generate_fastq {
 process emu {	
 	
 	publishDir params.outdir, mode: 'copy', pattern: '*/*/*.tsv'
+	errorStrategy 'ignore'
 
 	input:
 	path(reads)
@@ -165,7 +166,6 @@ process emu {
 	singularity run ${wd}0_singularity_containers/emu3.4.5.sif emu abundance ${reads} --min-abundance 0.01 --threads 16 --output-dir ./06_emu_abundance/emu_${reads.baseName} --keep-files --keep-read-assignments --keep-counts
 	"""
 }
-
 
 workflow {
 	def reads_ch = channel.fromPath(params.reads)
