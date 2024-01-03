@@ -22,19 +22,17 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/03_bed_files/f_{filename}.bed: BED files after alignment to barcode sequences.
 * /OUTPUT_FOLDER/04_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
 * /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Separated fastq files for each barcode.
-* /OUTPUT_FOLDER/06_emu_abundance/*: Contains output of amu annotation in sample subfolders.
+* /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
 
 ## Setup
 
-For the pipeline to work properly, it is necessary to have [nextflow(v.23.04.1)](https://github.com/nextflow-io/nextflow) and [singularity(v.3.8.5)](https://github.com/sylabs/singularity) installed.
-
-To install the pipeline, pull the repository:
+1) Install [nextflow(v.23.04.1)](https://github.com/nextflow-io/nextflow) and [singularity(v.3.8.5)](https://github.com/sylabs/singularity).
+2) Pull the repository as such:
 
 ```
 git clone https://github.com/dommju/ndp.git
 ```
-
-The necessary singularity containers are obtainable via https://depot.galaxyproject.org/singularity/ (see code below). The containers need to be downloaded (or moved) into the folder PATH/TO/ndp/0_singularity_containers/.
+3) Install the necessary singularity containers in a new directory PATH/TO/ndp/0_singularity_containers/ as such:
 
 ```
 cd PATH/TO/ndp
@@ -55,16 +53,14 @@ It is recommended to use this pipeline on a cluster!
 We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
 Basecalled input files must be in fastq format!
 
-1) Before starting the pipeline, ensure that you completed the [setup](##Setup)!
-
-2) First, create a new input and output directory for the run (parent directory: /PATH/TO/ndp).
+1) Create a new INPUT and OUTPUT directory for each run (parent directory: /PATH/TO/ndp).
 
 ```
 cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-3) In the same directory, modify the nextflow script (ndp.nf) by adjusting the working directory, input directory and output directory.
+3) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT directory and OUTPUT directory.
 
 4) Drop the fastq files into the input directory and execute the pipeline using:
 
@@ -105,3 +101,4 @@ You can reach us at:
 ## ToDo
 * add degen usage
 * add 2bc usage
+* generate directory tree of final setup
