@@ -152,6 +152,7 @@ process generate_fastq {
 process emu {	
 	
 	publishDir params.outdir, mode: 'copy', pattern: '*/*/*.tsv'
+	errorStrategy 'ignore'
 
 	input:
 	path(reads)
