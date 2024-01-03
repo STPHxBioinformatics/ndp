@@ -1,5 +1,5 @@
 # ndp
-A nextflow demultiplexing pipeline for PCR-barcoded 16S nanopore reads
+A nextflow demultiplexing pipeline for PCR-barcoded 16S nanopore reads.
 
 ## Project status
 We do not plan to adapt this pipeline any futher. It could however be modified, as:
