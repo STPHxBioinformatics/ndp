@@ -37,7 +37,9 @@ git clone https://github.com/dommju/ndp.git
 The necessary singularity containers are obtainable via https://depot.galaxyproject.org/singularity/ (see code below). The containers need to be downloaded (or moved) into the folder PATH/TO/ndp/0_singularity_containers/.
 
 ```
-cd  PATH/TO/ndp/0_singularity_containers
+cd PATH/TO/ndp
+mkdir 0_singularity_containers
+cd  0_singularity_containers
 singularity pull --name nanofilt2.8.0.sif https://depot.galaxyproject.org/singularity/nanofilt:2.8.0--py_0
 singularity pull --name fastqc0.11.8.sif https://depot.galaxyproject.org/singularity/fastqc:0.11.8--2
 singularity pull --name multiqc1.11.sif https://depot.galaxyproject.org/singularity/multiqc:1.11--pyhdfd78af_0
@@ -55,19 +57,19 @@ Basecalled input files must be in fastq format!
 
 1) Before starting the pipeline, ensure that you completed the [setup](##Setup)!
 
-2) First, create a new input and output directory for the run:
+2) First, create a new input and output directory for the run (parent directory: /PATH/TO/ndp).
 
 ```
-cd PATH/TO/demultiplexing_pipline
+cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-3) In the same directory, modify the nextflow script (.nf) by adjusting the working directory, input directory and output directory.
+3) In the same directory, modify the nextflow script (ndp.nf) by adjusting the working directory, input directory and output directory.
 
 4) Drop the fastq files into the input directory and execute the pipeline using:
 
 ```
-nextflow run nextflow_ndp.nf
+nextflow run ndp.nf
 ```
 
 ## Support
@@ -99,3 +101,7 @@ The project is licensed under the [MIT license](LICENSE).
 You can reach us at: 
 * <mailto:pierre.schneeberger@swisstph.ch>
 * <mailto:julian.dommann@swisstph.ch>
+
+## ToDo
+* add degen usage
+* add 2bc usage
