@@ -43,7 +43,7 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 
 ### <a name="classic"></a>Classic primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup to identify single bacterial isolates.
-The pipeline can either detect one primer sequence (forward only) or both (forward and reverse).
+The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -66,7 +66,7 @@ The pipeline can either detect one primer sequence (forward only) or both (forwa
 
 ### <a name="degenerate"></a>Degenerate primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup for microbiome characterization.
-The pipeline can either detect one primer sequence ([forward only](#1bc)) or both ([forward and reverse](#1bc)).
+The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
