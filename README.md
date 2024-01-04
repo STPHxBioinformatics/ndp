@@ -41,9 +41,10 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 
 ## Primer sequences
 
-### <a name="classic"></a>Classic primer sequences
+### <a name="classic"></a>A - Classic primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup to identify single bacterial isolates.
 The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
+The barcode sequences are marked in **bold**.
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -64,9 +65,10 @@ The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([
 | P07-REV   | **CTTACGAGGCAT**CGGTTACCTTGTTACGACTT          |
 | P08-REV   | **GTCCACCCTGGG**CGGTTACCTTGTTACGACTT          |
 
-### <a name="degenerate"></a>Degenerate primer sequences
+### <a name="degenerate"></a>B - Degenerate primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup for microbiome characterization.
 The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
+The barcode sequences are marked in **bold**.
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -94,7 +96,7 @@ It is recommended to use this pipeline on a cluster!
 We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
 Basecalled input files must be in fastq format!
 
-### <a name="1bc"></a>Running ndp to detect 1 PCR barcode (FWD only)
+### <a name="1bc"></a>A - Running ndp to detect 1 classic FWD primer (FWD only)
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -113,13 +115,26 @@ mkdir OUTPUT_FOLDER
 nextflow run ndp.nf
 ```
 
-To allow ndp to detect a [degenerate primer](#degenerate) (microbiome characterization), run the following command instead:
+### <a name="1bc-degen"></a>B - Running ndp to detect 1 degenerate FWD primer (FWD only)
+
+1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
+
+```
+cd PATH/TO/ndp
+mkdir INPUT_FOLDER
+mkdir OUTPUT_FOLDER
+```
+2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
+
+3) Transfer the fastq files to the INPUT_FOLDER directory
+
+4) Execute the [degenerate primer](#degenerate) pipeline using:
 
 ```
 nextflow run ndp_degenerate.nf
 ```
 
-### <a name="2bc"></a>Running ndp to detect 2 PCR barcodes (FWD and REV)
+### <a name="2bc"></a>Running ndp to detect 2 classic primer (FWD and REV)
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -138,8 +153,25 @@ mkdir OUTPUT_FOLDER
 nextflow run ndp2bc.nf
 ```
 
-To allow ndp to detect a [degenerate primer](#degenerate) pair (microbiome characterization), run the following command instead:
 
+### <a name="2bc-degen"></a>Running ndp to detect 2 degenerate primer (FWD and REV)
+
+1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
+
+```
+cd PATH/TO/ndp
+mkdir INPUT_FOLDER
+mkdir OUTPUT_FOLDER
+```
+2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
+
+3) Transfer your fastq files to the INPUT_FOLDER directory
+
+4) Execute the [degenerate primer](#degenerate) pipeline using:
+
+```
+nextflow run ndp2bc.nf
+```
 ```
 nextflow run ndp2bc_degenerate.nf
 ```
