@@ -16,7 +16,49 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Demultiplexed and trimmed fastq files for each barcode.
 * /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
 
-## Setup
+## Package structure overview
+After completing the [setup](#setup) and following the [usage guide](#usage), your folder structure should look like this:
+
+```
+ndp/                            # This is your working directory (WD)
+├── 0_emu_db/
+│   ├── species_taxid.fasta 
+│   └── taxonomy.tsv
+│
+├── 0_scripts/
+│   ├── 1bc.tab 
+│   ├── 1bc_degen.tab 
+│   ├── 2bc.tab 
+│   ├── 2bc_degen.tab 
+│   ├── extract_quality.py 
+│   └── split_bed_files.py
+│
+├── 0_singularity_containers/   # Must be created during setup!
+│   ├── nanofilt2.8.0.sif 
+│   ├── fastqc0.11.8.sif 
+│   ├── multiqc1.9.sif
+│   ├── seqkit_2.6.1.sif 
+│   ├── python_3.10.4.sif
+│   ├── biopython_1.78.sif
+│   └── emu_3.4.5.sif
+│
+├── INPUT_FOLDER/
+│   ├── input_file1.fastq       # INPUT_FOLDER must be created for each run!
+│   └── input_file2.fastq
+├── INPUT_FOLDER2/
+│   ├── input_file3.fastq       
+│   └── input_file4.fastq
+│
+├── OUTPUT_FOLDER               # OUTPUT_FOLDER must be created for each run!
+├── OUTPUT_FOLDER2              
+│
+├── ndp.nf                      # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+├── ndp_degenerate.nf           # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+├── ndp2bc.nf                   # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+└── ndp2bc_degenerate.nf        # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+```
+
+## <a name="setup"></a>Setup
 
 1) Install [nextflow(~=23.04)](https://github.com/nextflow-io/nextflow) and [singularity(~=3.8)](https://github.com/sylabs/singularity).
 2) Pull the repository as such:
@@ -42,11 +84,11 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 ## Primer sequences
 
 ### <a name="classic"></a>A - Classic primer sequences
-As published in DOI-XXX, we recommend to use these primers in your experimental setup to identify single bacterial isolates.
-The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
-The barcode sequences are marked in **bold**.
+* We recommend to use these primers in your experimental setup to identify single bacterial isolates.
+* The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
+* These primer sequences are enconded in the files 1bc.tab (FWD only) and 2bc.tab (FWD and REV), respectively
 
-| Primer    | Primer Sequence                                |
+| Primer    | Primer Sequence (barcode in **bold**)          |
 | --------- | ---------------------------------------------- |
 | P01-FWD   | **GAGCCCGTTCCG**AGAGTTTGATCMTGGCTCAG          |
 | P02-FWD   | **TGGCACCGATTA**AGAGTTTGATCMTGGCTCAG          |
@@ -66,11 +108,11 @@ The barcode sequences are marked in **bold**.
 | P08-REV   | **GTCCACCCTGGG**CGGTTACCTTGTTACGACTT          |
 
 ### <a name="degenerate"></a>B - Degenerate primer sequences
-As published in DOI-XXX, we recommend to use these primers in your experimental setup for microbiome characterization.
-The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
-The barcode sequences are marked in **bold**.
+* We recommend to use these primers in your experimental setup for microbiome characterization.
+* The pipeline can either detect one primer sequence ([FWD only](#1bc)) or both ([FWD and REV](#2bc)).
+* These primer sequences are enconded in the files 1bc_degen.tab (FWD only) and 2bc_degen.tab (FWD and REV), respectively
 
-| Primer    | Primer Sequence                                |
+| Primer    | Primer Sequence (barcode in **bold**)          |
 | --------- | ---------------------------------------------- |
 | P01-FWD   | **GAGCCCGTTCCG**AGRGTTYGATYMTGGCTCAG          |
 | P02-FWD   | **TGGCACCGATTA**AGRGTTYGATYMTGGCTCAG          |
@@ -90,7 +132,7 @@ The barcode sequences are marked in **bold**.
 | P08-REV   | **GTCCACCCTGGG**CGGYTACCTTGTTACGACTT          |
 
 
-## Usage
+## <a name="usage"></a>Usage
 
 It is recommended to use this pipeline on a cluster! 
 We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
@@ -174,48 +216,6 @@ nextflow run ndp2bc.nf
 ```
 ```
 nextflow run ndp2bc_degenerate.nf
-```
-
-## Package structure overview
-After completing the setup and follwoing the steps under usage, your folder structure should look like this:
-
-```
-ndp/                            # This is your working directory (WD)
-├── 0_emu_db/
-│   ├── species_taxid.fasta 
-│   └── taxonomy.tsv
-│
-├── 0_scripts/
-│   ├── 1bc.tab 
-│   ├── 1bc_degen.tab 
-│   ├── 2bc.tab 
-│   ├── 2bc_degen.tab 
-│   ├── extract_quality.py 
-│   └── split_bed_files.py
-│
-├── 0_singularity_containers/   # Must be created during setup!
-│   ├── nanofilt2.8.0.sif 
-│   ├── fastqc0.11.8.sif 
-│   ├── multiqc1.9.sif
-│   ├── seqkit_2.6.1.sif 
-│   ├── python_3.10.4.sif
-│   ├── biopython_1.78.sif
-│   └── emu_3.4.5.sif
-│
-├── INPUT_FOLDER/
-│   ├── input_file1.fastq       # INPUT_FOLDER must be created for each run!
-│   └── input_file2.fastq
-├── INPUT_FOLDER2/
-│   ├── input_file3.fastq       
-│   └── input_file4.fastq
-│
-├── OUTPUT_FOLDER               # OUTPUT_FOLDER must be created for each run!
-├── OUTPUT_FOLDER2              
-│
-├── ndp.nf                      # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
-├── ndp_degenerate.nf           # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
-├── ndp2bc.nf                   # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
-└── ndp2bc_degenerate.nf        # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
 ```
 
 ## Support
