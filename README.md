@@ -94,7 +94,7 @@ It is recommended to use this pipeline on a cluster!
 We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
 Basecalled input files must be in fastq format!
 
-### <a name="1bc"></a>Running ndp to detect 1 PCR barcode
+### <a name="1bc"></a>Running ndp to detect 1 PCR barcode (FWD only)
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -119,7 +119,7 @@ To allow ndp to detect a [degenerate primer](#degenerate) (microbiome characteri
 nextflow run ndp_degenerate.nf
 ```
 
-### <a name="2bc"></a>Running ndp to detect 2 PCR barcodes
+### <a name="2bc"></a>Running ndp to detect 2 PCR barcodes (FWD and REV)
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
