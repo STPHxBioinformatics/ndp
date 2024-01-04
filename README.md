@@ -66,7 +66,7 @@ The pipeline can either detect one primer sequence (forward only) or both (forwa
 
 ### Degenerate primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup for microbiome characterization.
-The pipeline can either detect one primer sequence ([forward only](### Running ndp to detect 1 PCR barcode)) or both ([forward and reverse](### Running ndp to detect 2 PCR barcodes)).
+The pipeline can either detect one primer sequence ([forward only](######running-ndp-to-detect-1-pcr-barcode)) or both ([forward and reverse](###running-ndp-to-detect-2-pcr-barcodes)).
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -95,6 +95,7 @@ We recommend to demultiplex on the MinION using real-time Guppy during the seque
 Basecalled input files must be in fastq format!
 
 ### Running ndp to detect 1 PCR barcode
+###running-ndp-to-detect-1-pcr-barcode
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -120,6 +121,7 @@ nextflow run ndp_degenerate.nf
 ```
 
 ### Running ndp to detect 2 PCR barcodes
+###running-ndp-to-detect-2-pcr-barcodes
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
