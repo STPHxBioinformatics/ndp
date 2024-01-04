@@ -41,7 +41,7 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 
 ## Primer sequences
 
-### Classic primer sequences
+### <a name="classic"></a>A Classic primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup to identify single bacterial isolates.
 The pipeline can either detect one primer sequence (forward only) or both (forward and reverse).
 
@@ -64,9 +64,9 @@ The pipeline can either detect one primer sequence (forward only) or both (forwa
 | P07-REV   | **CTTACGAGGCAT**CGGTTACCTTGTTACGACTT          |
 | P08-REV   | **GTCCACCCTGGG**CGGTTACCTTGTTACGACTT          |
 
-### Degenerate primer sequences
+### <a name="degenerate"></a>A Degenerate primer sequences
 As published in DOI-XXX, we recommend to use these primers in your experimental setup for microbiome characterization.
-The pipeline can either detect one primer sequence ([forward only](######running-ndp-to-detect-1-pcr-barcode)) or both ([forward and reverse](###running-ndp-to-detect-2-pcr-barcodes)).
+The pipeline can either detect one primer sequence ([forward only](#1bc)) or both ([forward and reverse](#1bc)).
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -94,7 +94,7 @@ It is recommended to use this pipeline on a cluster!
 We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
 Basecalled input files must be in fastq format!
 
-### Running ndp to detect 1 PCR barcode
+### <a name="1bc"></a>A Running ndp to detect 1 PCR barcode
 ###running-ndp-to-detect-1-pcr-barcode
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
@@ -108,19 +108,19 @@ mkdir OUTPUT_FOLDER
 
 3) Transfer the fastq files to the INPUT_FOLDER directory
 
-4) Execute the [classic primer](### Classic primer sequences) pipeline using:
+4) Execute the [classic primer](#classic) pipeline using:
 
 ```
 nextflow run ndp.nf
 ```
 
-To allow ndp to detect a [degenerate primer](### Degenerate primer sequences) (microbiome characterization), run the following command instead:
+To allow ndp to detect a [degenerate primer](#degenerate) (microbiome characterization), run the following command instead:
 
 ```
 nextflow run ndp_degenerate.nf
 ```
 
-### Running ndp to detect 2 PCR barcodes
+### <a name="2bc"></a>A Running ndp to detect 2 PCR barcodes
 ###running-ndp-to-detect-2-pcr-barcodes
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
@@ -134,13 +134,13 @@ mkdir OUTPUT_FOLDER
 
 3) Transfer your fastq files to the INPUT_FOLDER directory
 
-4) Execute the [classic primer](### Classic primer sequences) pipeline using:
+4) Execute the [classic primer](#classic) pipeline using:
 
 ```
 nextflow run ndp2bc.nf
 ```
 
-To allow ndp to detect a [degenerate primer](### Degenerate primer sequences) pair (microbiome characterization), run the following command instead:
+To allow ndp to detect a [degenerate primer](#degenerate) pair (microbiome characterization), run the following command instead:
 
 ```
 nextflow run ndp2bc_degenerate.nf
