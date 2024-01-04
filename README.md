@@ -212,9 +212,6 @@ mkdir OUTPUT_FOLDER
 4) Execute the [degenerate primer](#degenerate) pipeline using:
 
 ```
-nextflow run ndp2bc.nf
-```
-```
 nextflow run ndp2bc_degenerate.nf
 ```
 
