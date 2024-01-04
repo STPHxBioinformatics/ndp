@@ -134,7 +134,7 @@ mkdir OUTPUT_FOLDER
 nextflow run ndp_degenerate.nf
 ```
 
-### <a name="2bc"></a>Running ndp to detect 2 classic primer (FWD and REV)
+### <a name="2bc"></a>A - Running ndp to detect 2 classic primers (FWD and REV)
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -154,7 +154,7 @@ nextflow run ndp2bc.nf
 ```
 
 
-### <a name="2bc-degen"></a>Running ndp to detect 2 degenerate primer (FWD and REV)
+### <a name="2bc-degen"></a>B - Running ndp to detect 2 degenerate primers (FWD and REV)
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
