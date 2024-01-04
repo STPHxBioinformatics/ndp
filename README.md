@@ -14,7 +14,7 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/03_bed_files/f_{filename}.bed: BED files after alignment to barcode sequences.
 * /OUTPUT_FOLDER/04_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
 * /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Demultiplexed and trimmed fastq files for each barcode.
-* /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
+* /OUTPUT_FOLDER/06_emu_abundance: Contains output of Emu annotation in sample subfolders.
 
 ## Citations
 If this pipeline is used for your research purposes, please cite DOI-XXX.
@@ -218,11 +218,10 @@ mkdir OUTPUT_FOLDER
 nextflow run ndp2bc_degenerate.nf
 ```
 
-## Pipeline mofifications
-This pipeline can be modified to fit other applications, as:
+## Pipeline modifications
 
-* ...the primer sequences in the files PATH/TO/ndp/0_scripts may be changed to other sequences.
-* ...the  pipeline may be adapted to other target organisms by using [custom Emu databases](https://gitlab.com/treangenlab/emu#build-custom-database) page.
+* Primer sequences in the files 1bc.tab, 2bc.tab, 1bc_degen.tab or 2bc_degen.tab may be changed to fit other experimental setups.
+* The  pipeline may be adapted to other target organisms by using [custom Emu databases](https://gitlab.com/treangenlab/emu#build-custom-database).
 
 ## License
 
