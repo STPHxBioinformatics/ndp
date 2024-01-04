@@ -7,7 +7,7 @@
 // 2) Basecall your POD5 files using Dorado (singlex/duplex) and then demultiplex via the outer ONT barcodes using 'guppy_barcoder' or 'dorado demux'.
 // 3) Make sure your input reads are in .fastq format
 // 4) Choose a short name for your reads that includes the outer ONT barcode used (for example: 'duplex_25.fastq' or 'singlex_25.fastq').
-// 5) Generate an input and output directory for each run under PATH/TO/ndp/
+// 5) Generate an INPUT_FOLDER and OUTPUT_FOLDER for each run under PATH/TO/ndp/
 // 6) Adjust your working directory WD, INPUT_FOLDER and OUTPUT_FOLDER directory in this script BEFORE the run (input: params.reads, output: params.outdir)
 // 7) Adjust the paths for your stdout and stderr files in your SLURM script!
 // 8) Enjoy! :)

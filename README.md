@@ -18,7 +18,7 @@ The pipeline will output the following files in the designated output folder:
 
 ## Setup
 
-1) Install [nextflow(v.23.04.1)](https://github.com/nextflow-io/nextflow) and [singularity(v.3.8.5)](https://github.com/sylabs/singularity).
+1) Install [nextflow(~=23.04)](https://github.com/nextflow-io/nextflow) and [singularity(~=3.8)](https://github.com/sylabs/singularity).
 2) Pull the repository as such:
 
 ```
@@ -32,7 +32,7 @@ mkdir 0_singularity_containers
 cd  0_singularity_containers
 singularity pull --name nanofilt2.8.0.sif https://depot.galaxyproject.org/singularity/nanofilt:2.8.0--py_0
 singularity pull --name fastqc0.11.8.sif https://depot.galaxyproject.org/singularity/fastqc:0.11.8--2
-singularity pull --name multiqc1.11.sif https://depot.galaxyproject.org/singularity/multiqc:1.11--pyhdfd78af_0
+singularity pull --name multiqc:1.9.sif https://depot.galaxyproject.org/singularity/multiqc:1.9--pyh9f0ad1d_0
 singularity pull --name seqkit2.6.1.sif https://depot.galaxyproject.org/singularity/seqkit:2.6.1--h9ee0642_0
 singularity pull --name python3.10.4.sif https://depot.galaxyproject.org/singularity/python:3.10.4
 singularity pull --name biopython1.78.sif https://depot.galaxyproject.org/singularity/biopython:1.78
