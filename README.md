@@ -4,7 +4,7 @@ Consider the corresponding publication (DOI-XXX) for further details.
 Here's an overview of the individual processes taking place in the pipline:
 
 * Read filtering via [Nanofilt](https://github.com/wdecoster/nanofilt)
-* QC via [FastQC](https://github.com/s-andrews/FastQC) and [MultiQC](https://multiqc.info/)
+* QC via [FastQC](https://github.com/s-andrews/FastQC) and [MultiQC](https://github.com/MultiQC/MultiQC)
 * Demultiplexing and trimming via [seqkit](https://github.com/shenwei356/seqkit) and custom python scripts
 * Annotation of reads via [Emu](https://gitlab.com/treangenlab/emu)
 
@@ -15,6 +15,9 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/04_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
 * /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Demultiplexed and trimmed fastq files for each barcode.
 * /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
+
+## Citations
+If this pipeline is used for your research purposes, please cite DOI-XXX.
 
 ## Package structure overview
 After completing the [setup](#setup) and following the [usage guide](#usage), your folder structure should look like this:
@@ -60,7 +63,7 @@ ndp/                            # This is your working directory (WD)
 
 ## <a name="setup"></a>Setup
 
-1) Install [nextflow(~=23.04)](https://github.com/nextflow-io/nextflow) and [singularity(~=3.8)](https://github.com/sylabs/singularity).
+1) Install [nextflow(~=23.04)](https://github.com/nextflow-io/nextflow) and [singularity(~=3.8)](https://docs.sylabs.io/guides/3.8/admin-guide/installation.html#before-you-begin).
 2) Pull the repository as such:
 
 ```
@@ -215,37 +218,23 @@ mkdir OUTPUT_FOLDER
 nextflow run ndp2bc_degenerate.nf
 ```
 
-## Support
-We do not plan to adapt this pipeline any futher. It could however be modified to fit other applications, as:
+## Pipeline mofifications
+This pipeline can be modified to fit other applications, as:
 
-* ...the primer sequences in the files PATH/TO/ndp/0_scripts may be changed to other primer sequences.
-* ...the  pipeline may be adapted to other target organisms by using other Emu databases or creating custom Emu databases. For more info, please visit the [Emu GitLab](https://gitlab.com/treangenlab/emu) page.
+* ...the primer sequences in the files PATH/TO/ndp/0_scripts may be changed to other sequences.
+* ...the  pipeline may be adapted to other target organisms by using [custom Emu databases](https://gitlab.com/treangenlab/emu#build-custom-database) page.
 
-## Citations
-If this pipeline is used for your research purposes, please cite DOI-XXX.
+## License
 
-## Credits
+The project is licensed under the [MIT license](LICENSE).
+
+## Credit
 This pipeline relies on a few great pieces of software, namely:
 
 * [Nextflow](https://github.com/nextflow-io/nextflow)
 * [Singularity CE](https://github.com/sylabs/singularity)
 * [Nanofilt](https://github.com/wdecoster/nanofilt)
 * [FastQC](https://github.com/s-andrews/FastQC)
-* [MultiQC](https://multiqc.info/)
+* [MultiQC](https://github.com/MultiQC/MultiQC)
 * [seqkit](https://github.com/shenwei356/seqkit)
 * [Emu](https://gitlab.com/treangenlab/emu)
-
-## License
-
-The project is licensed under the [MIT license](LICENSE).
-
-## Contact
-
-You can reach us at: 
-* <mailto:pierre.schneeberger@swisstph.ch>
-* <mailto:julian.dommann@swisstph.ch>
-
-## ToDo
-* add primers / flexibility
-* generate directory tree of final setup
-* Explain the rustic nature of pipeline; open for contributors
