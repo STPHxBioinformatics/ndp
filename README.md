@@ -95,7 +95,6 @@ We recommend to demultiplex on the MinION using real-time Guppy during the seque
 Basecalled input files must be in fastq format!
 
 ### <a name="1bc"></a>Running ndp to detect 1 PCR barcode
-###running-ndp-to-detect-1-pcr-barcode
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
@@ -121,7 +120,6 @@ nextflow run ndp_degenerate.nf
 ```
 
 ### <a name="2bc"></a>Running ndp to detect 2 PCR barcodes
-###running-ndp-to-detect-2-pcr-barcodes
 
 1) Create a new INPUT_FOLDER and OUTPUT_FOLDER directory for each run (parent directory: /PATH/TO/ndp).
 
