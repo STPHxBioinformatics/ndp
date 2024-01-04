@@ -176,6 +176,48 @@ nextflow run ndp2bc.nf
 nextflow run ndp2bc_degenerate.nf
 ```
 
+## Package structure overview
+After completing the setup and follwoing the steps under usage, your folder structure should look like this:
+
+```
+ndp/                            # This is your working directory (WD)
+├── 0_emu_db/
+│   ├── species_taxid.fasta 
+│   └── taxonomy.tsv
+│
+├── 0_scripts/
+│   ├── 1bc.tab 
+│   ├── 1bc_degen.tab 
+│   ├── 2bc.tab 
+│   ├── 2bc_degen.tab 
+│   ├── extract_quality.py 
+│   └── split_bed_files.py
+│
+├── 0_singularity_containers/   # Must be created during setup!
+│   ├── nanofilt2.8.0.sif 
+│   ├── fastqc0.11.8.sif 
+│   ├── multiqc1.9.sif
+│   ├── seqkit_2.6.1.sif 
+│   ├── python_3.10.4.sif
+│   ├── biopython_1.78.sif
+│   └── emu_3.4.5.sif
+│
+├── INPUT_FOLDER/
+│   ├── input_file1.fastq       # INPUT_FOLDER must be created for each run!
+│   └── input_file2.fastq
+├── INPUT_FOLDER2/
+│   ├── input_file3.fastq       
+│   └── input_file4.fastq
+│
+├── OUTPUT_FOLDER               # OUTPUT_FOLDER must be created for each run!
+├── OUTPUT_FOLDER2              
+│
+├── ndp.nf                      # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+├── ndp_degenerate.nf           # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+├── ndp2bc.nf                   # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+└── ndp2bc_degenerate.nf        # Specify WD, INPUT_FOLDER and OUTPUT_FOLDER in this script!
+```
+
 ## Support
 We do not plan to adapt this pipeline any futher. It could however be modified to fit other applications, as:
 
