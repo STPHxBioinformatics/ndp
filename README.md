@@ -13,7 +13,7 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/02_quality_control/multiqc_report.html: MultiQC report for all fastq files.
 * /OUTPUT_FOLDER/03_bed_files/f_{filename}.bed: BED files after alignment to barcode sequences.
 * /OUTPUT_FOLDER/04_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
-* /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Separated fastq files for each barcode.
+* /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Demultiplexed and trimmed fastq files for each barcode.
 * /OUTPUT_FOLDER/06_emu_abundance: Contains output of amu annotation in sample subfolders.
 
 ## Setup
@@ -41,7 +41,9 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 
 ## Primer sequences
 
-Primer sequences: 
+### Classic primer sequences
+As published in DOI-XXX, we recommend to use these primers in your experimental setup to identify single bacterial isolates.
+The pipeline can either detect one primer sequence (forward only) or both (forward and reverse).
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -62,7 +64,9 @@ Primer sequences:
 | P07-REV   | **CTTACGAGGCAT**CGGTTACCTTGTTACGACTT          |
 | P08-REV   | **GTCCACCCTGGG**CGGTTACCTTGTTACGACTT          |
 
-Degenerate primer sequences: 
+### Degenerate primer sequences
+As published in DOI-XXX, we recommend to use these primers in your experimental setup for microbiome characterization.
+The pipeline can either detect one primer sequence ([forward only](### Running ndp to detect 1 PCR barcode)) or both ([forward and reverse](### Running ndp to detect 2 PCR barcodes)).
 
 | Primer    | Primer Sequence                                |
 | --------- | ---------------------------------------------- |
@@ -84,9 +88,6 @@ Degenerate primer sequences:
 | P08-REV   | **GTCCACCCTGGG**CGGYTACCTTGTTACGACTT          |
 
 
-## Pipeline Flexibiliy
-...
-
 ## Usage
 
 It is recommended to use this pipeline on a cluster! 
@@ -106,13 +107,13 @@ mkdir OUTPUT_FOLDER
 
 3) Transfer the fastq files to the INPUT_FOLDER directory
 
-4) Execute the pipeline using:
+4) Execute the [classic primer](### Classic primer sequences) pipeline using:
 
 ```
 nextflow run ndp.nf
 ```
 
-To allow ndp to detect a degenerate primer (microbiome characterization), run the following command instead:
+To allow ndp to detect a [degenerate primer](### Degenerate primer sequences) (microbiome characterization), run the following command instead:
 
 ```
 nextflow run ndp_degenerate.nf
@@ -131,13 +132,13 @@ mkdir OUTPUT_FOLDER
 
 3) Transfer your fastq files to the INPUT_FOLDER directory
 
-4) Execute the pipeline using:
+4) Execute the [classic primer](### Classic primer sequences) pipeline using:
 
 ```
 nextflow run ndp2bc.nf
 ```
 
-To allow ndp to detect a degenerate primer pair (microbiome characterization), run the following command instead:
+To allow ndp to detect a [degenerate primer](### Degenerate primer sequences) pair (microbiome characterization), run the following command instead:
 
 ```
 nextflow run ndp2bc_degenerate.nf
