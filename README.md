@@ -147,7 +147,7 @@ cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
+2) Modify the nextflow script (**ndp.nf**) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
 
 3) Transfer the fastq files to the INPUT_FOLDER directory
 
@@ -166,7 +166,7 @@ cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
+2) Modify the nextflow script (**ndp_degenerate.nf**) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
 
 3) Transfer the fastq files to the INPUT_FOLDER directory
 
@@ -185,7 +185,7 @@ cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
+2) Modify the nextflow script (**ndp2bc.nf**) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
 
 3) Transfer your fastq files to the INPUT_FOLDER directory
 
@@ -205,7 +205,7 @@ cd PATH/TO/ndp
 mkdir INPUT_FOLDER
 mkdir OUTPUT_FOLDER
 ```
-2) Modify the nextflow script (ndp.nf) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
+2) Modify the nextflow script (**ndp2bc_degenerate.nf**) by adjusting the working directory WD, INPUT_FOLDER directory and OUTPUT_FOLDER directory.
 
 3) Transfer your fastq files to the INPUT_FOLDER directory
 
