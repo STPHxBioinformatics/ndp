@@ -137,9 +137,9 @@ singularity pull --name emu3.4.5.sif https://depot.galaxyproject.org/singularity
 
 ## <a name="usage"></a>Usage
 
-It is recommended to use this pipeline on a cluster! 
-We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
-Basecalled input files must be in fastq format!
+* It is recommended to use this pipeline on a cluster! 
+* We recommend to demultiplex on the MinION using real-time Guppy during the sequencing run and basecall resulting POD5 files using [Dorado](https://github.com/nanoporetech/dorado). 
+* Basecalled input files must be in fastq format!
 
 ### <a name="1bc"></a>A - Running ndp to detect 1 classic FWD primer (FWD only)
 
