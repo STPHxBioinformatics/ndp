@@ -62,6 +62,7 @@ ndp/                            # This is your working directory (WD)
 ```
 
 ## <a name="setup"></a>Setup
+We tested our pipeline on CentOS (7.9) and Ubuntu (22.04).
 
 1) Install [nextflow(~=23.04)](https://github.com/nextflow-io/nextflow) and [singularity(~=3.8)](https://docs.sylabs.io/guides/3.8/admin-guide/installation.html#before-you-begin).
 2) Pull the repository as such:
