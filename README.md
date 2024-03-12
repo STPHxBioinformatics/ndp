@@ -68,7 +68,7 @@ We tested our pipeline on CentOS (7.9) and Ubuntu (22.04).
 2) Pull the repository as such:
 
 ```
-git clone https://github.com/dommju/ndp.git
+git clone https://github.com/STPHxBioinformatics/ndp.git
 ```
 3) Install the necessary singularity containers in a new directory PATH/TO/ndp/0_singularity_containers/ as such:
 
