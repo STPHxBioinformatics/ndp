@@ -10,11 +10,10 @@ Here's an overview of the individual processes taking place in the pipline:
 
 The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/01_filtered_reads/f_{filename}.fastq: Filtered reads (fastq) after applying Nanofilt.
-* /OUTPUT_FOLDER/02_quality_control/multiqc_report.html: MultiQC report for all fastq files.
-* /OUTPUT_FOLDER/03_bed_files/f_{filename}.bed: BED files after alignment to barcode sequences.
-* /OUTPUT_FOLDER/04_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
-* /OUTPUT_FOLDER/05_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Demultiplexed and trimmed fastq files for each barcode.
-* /OUTPUT_FOLDER/06_emu_abundance: Contains output of Emu annotation in sample subfolders.
+* /OUTPUT_FOLDER/02_bed_files/f_{filename}.bed: BED files after alignment to barcode sequences.
+* /OUTPUT_FOLDER/03_split_bed_files/f_{filename}_bar_BARCODE.bed: Separated BED files for each barcode.
+* /OUTPUT_FOLDER/04_final_fastqs/f_{filename}_bar_BARCODE_extracted.fastq: Demultiplexed and trimmed fastq files for each barcode.
+* /OUTPUT_FOLDER/05_emu_abundance: Contains output of Emu annotation in sample subfolders.
 
 ## Citations
 If this pipeline is used for your research purposes, please cite DOI-XXX.
@@ -38,8 +37,6 @@ ndp/                            # This is your working directory (WD)
 │
 ├── 0_singularity_containers/   # Must be created during setup!
 │   ├── nanofilt2.8.0.sif 
-│   ├── fastqc0.11.8.sif 
-│   ├── multiqc1.9.sif
 │   ├── seqkit_2.6.1.sif 
 │   ├── python_3.10.4.sif
 │   ├── biopython_1.78.sif
@@ -77,8 +74,6 @@ cd PATH/TO/ndp
 mkdir 0_singularity_containers
 cd  0_singularity_containers
 singularity pull --name nanofilt2.8.0.sif https://depot.galaxyproject.org/singularity/nanofilt:2.8.0--py_0
-singularity pull --name fastqc0.11.8.sif https://depot.galaxyproject.org/singularity/fastqc:0.11.8--2
-singularity pull --name multiqc:1.9.sif https://depot.galaxyproject.org/singularity/multiqc:1.9--pyh9f0ad1d_0
 singularity pull --name seqkit2.6.1.sif https://depot.galaxyproject.org/singularity/seqkit:2.6.1--h9ee0642_0
 singularity pull --name python3.10.4.sif https://depot.galaxyproject.org/singularity/python:3.10.4
 singularity pull --name biopython1.78.sif https://depot.galaxyproject.org/singularity/biopython:1.78
@@ -234,7 +229,5 @@ This pipeline relies on a few great pieces of software, namely:
 * [Nextflow](https://github.com/nextflow-io/nextflow)
 * [Singularity CE](https://github.com/sylabs/singularity)
 * [Nanofilt](https://github.com/wdecoster/nanofilt)
-* [FastQC](https://github.com/s-andrews/FastQC)
-* [MultiQC](https://github.com/MultiQC/MultiQC)
 * [seqkit](https://github.com/shenwei356/seqkit)
 * [Emu](https://gitlab.com/treangenlab/emu)
