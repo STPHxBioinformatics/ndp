@@ -4,7 +4,6 @@ Consider the corresponding publication (DOI-XXX) for further details.
 Here's an overview of the individual processes taking place in the pipline:
 
 * Read filtering via [Nanofilt](https://github.com/wdecoster/nanofilt)
-* QC via [FastQC](https://github.com/s-andrews/FastQC) and [MultiQC](https://github.com/MultiQC/MultiQC)
 * Demultiplexing and trimming via [seqkit](https://github.com/shenwei356/seqkit) and custom python scripts
 * Annotation of reads via [Emu](https://gitlab.com/treangenlab/emu)
 

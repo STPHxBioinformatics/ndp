@@ -49,43 +49,6 @@ process filtering {
 	"""
 }
 
-// Generate FastQC report for each read
-// Check the FastQC manual for more details under: https://github.com/s-andrews/FastQC
-
-process fastqc {		
-	
-	input:
-	path(reads)
-	
-	output:
-	file "*_fastqc.{zip,html}"
-	
-	script:
-	"""
-	singularity run ${wd}0_singularity_containers/fastqc0.11.8.sif fastqc -q $reads
-	"""
-}
-
-// Generate combined MultiQC report
-// Check the MultiQC manual for more details under: https://github.com/ewels/MultiQC
-
-process multiqc {	
-
-	publishDir "${params.outdir}02_quality_control/", mode: 'copy', pattern: '*.html'	
-	
-	input:
-	file ('fastqc/*')
-
-	output:
-	file "multiqc_report.html"
-	file "multiqc_data"
-
-	script:
-	"""
-	singularity run ${wd}0_singularity_containers/multiqc1.9.sif multiqc .
-	"""
-}
-
 // Generate BED files with all barcode sequence(s) found in the reads
 // Trimming based on barcode sequence(s) found in the reads
 // Barcode file '2bc.tab' can be adjusted to search different barcode/primer sequences
@@ -94,7 +57,7 @@ process multiqc {
 
 process bed {
 
-	publishDir "${params.outdir}03_bed_files/", mode: 'copy', pattern: '*.bed'	
+	publishDir "${params.outdir}02_bed_files/", mode: 'copy', pattern: '*.bed'	
 	
 	input:
 	path(reads)
@@ -112,7 +75,7 @@ process bed {
 
 process split_bed {
 
-	publishDir "${params.outdir}04_split_bed_files/", mode: 'copy', pattern: '*.bed'	
+	publishDir "${params.outdir}03_split_bed_files/", mode: 'copy', pattern: '*.bed'	
 	
 	input:
 	path(reads)
@@ -142,7 +105,7 @@ process generate_fastq {
 	
 	script:
 	"""
-	singularity exec ${wd}0_singularity_containers/biopython1.78.sif python3 ${wd}0_scripts/extract_quality.py ${params.outdir}01_filtered_reads/ ${params.outdir}04_split_bed_files/"*_bar_???.bed" -o ./05_final_fastqs
+	singularity exec ${wd}0_singularity_containers/biopython1.78.sif python3 ${wd}0_scripts/extract_quality.py ${params.outdir}01_filtered_reads/ ${params.outdir}03_split_bed_files/"*_bar_???.bed" -o ./04_final_fastqs
 	"""
 }
 
@@ -163,7 +126,7 @@ process emu {
 	script:
 	"""
 	export EMU_DATABASE_DIR=${wd}0_emu_db
-	singularity run ${wd}0_singularity_containers/emu3.4.5.sif emu abundance ${reads} --min-abundance 0.01 --threads 16 --output-dir ./06_emu_abundance/emu_${reads.baseName} --keep-files --keep-read-assignments --keep-counts
+	singularity run ${wd}0_singularity_containers/emu3.4.5.sif emu abundance ${reads} --min-abundance 0.01 --threads 16 --output-dir ./05_emu_abundance/emu_${reads.baseName} --keep-files --keep-read-assignments --keep-counts
 	"""
 }
 
@@ -173,11 +136,6 @@ workflow {
 	filtering(reads_ch)
 	filtered_reads_ch = filtering.out
 	
-	fastqc(filtered_reads_ch.collect())
-	fastqc_reads_ch = fastqc.out
-
-	multiqc(fastqc_reads_ch.collect())
-
 	bed(filtered_reads_ch)
 	bed_reads_ch = bed.out
 
