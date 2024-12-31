@@ -1,12 +1,12 @@
 // Hey there!
 // Welcome to our custom demultiplexing pipeline built to filter, quality control, demultiplex and annotate
-// single or double barcoded 16srRNA amplicons sequenced on the ONT MinION platform (singlex or duplex reads).
+// single or double barcoded 16srRNA amplicons sequenced on the ONT MinION platform (simplex or duplex reads).
 
 // Before you start the pipeline please make sure you check the following things:
-// 1) Make sure you follow the laboratory procedure as described in DOI-XXX
-// 2) Basecall your POD5 files using Dorado (singlex/duplex) and then demultiplex via the outer ONT barcodes using 'guppy_barcoder' or 'dorado demux'.
+// 1) Make sure you follow the laboratory procedure as described in https://journals.asm.org/doi/10.1128/msystems.00859-24
+// 2) Basecall your POD5 files using Dorado (simplex/duplex) and then demultiplex via the outer ONT barcodes using 'guppy_barcoder' or 'dorado demux'.
 // 3) Make sure your input reads are in .fastq format
-// 4) Choose a short name for your reads that includes the outer ONT barcode used (for example: 'duplex_25.fastq' or 'singlex_25.fastq').
+// 4) Choose a short name for your reads that includes the outer ONT barcode used (for example: 'duplex_25.fastq' or 'simplex_25.fastq').
 // 5) Generate an INPUT_FOLDER and OUTPUT_FOLDER for each run under PATH/TO/ndp/
 // 6) Adjust your working directory WD, INPUT_FOLDER and OUTPUT_FOLDER directory in this script BEFORE the run (input: params.reads, output: params.outdir)
 // 7) Adjust the paths for your stdout and stderr files in your SLURM script!
