@@ -15,7 +15,7 @@ The pipeline will output the following files in the designated output folder:
 * /OUTPUT_FOLDER/05_emu_abundance: Contains output of Emu annotation in sample subfolders.
 
 ## Citations
-If this pipeline is used for your research purposes, please cite DOI-XXX.
+If this pipeline is used for your research purposes, please cite [our paper](https://journals.asm.org/doi/10.1128/msystems.00859-24).
 
 ## Package structure overview
 After completing the [setup](#setup) and following the [usage guide](#usage), your folder structure should look like this:
