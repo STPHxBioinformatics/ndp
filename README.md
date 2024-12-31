@@ -1,6 +1,6 @@
 # ndp
 This nextflow pipeline will demultiplex 16S amplicon reads based on two custom barcode sequences and identify the reads using a 16S database. 
-Consider the corresponding publication (DOI-XXX) for further details. 
+Consider the corresponding [publication](https://journals.asm.org/doi/10.1128/msystems.00859-24) for further details. 
 Here's an overview of the individual processes taking place in the pipline:
 
 * Read filtering via [Nanofilt](https://github.com/wdecoster/nanofilt)
